@@ -21,6 +21,7 @@ public class Player implements Entity
 
     public BufferedImage upD1, upD2, leftD1, leftD2, rightD1, rightD2, downD1, downD2;
     public String direction;
+    public boolean collision = false;
 
     public int imageCounter = 0;
     public int imageNum = 1;
@@ -37,19 +38,46 @@ public class Player implements Entity
         if (KeyBoardAction.down || KeyBoardAction.up || KeyBoardAction.left || KeyBoardAction.right) {
             if (KeyBoardAction.up) {
                 direction = "up";
-                playerPosY -= playerSpeed;
             }
             if (KeyBoardAction.down) {
                 direction = "down";
-                playerPosY += playerSpeed;
             }
             if (KeyBoardAction.left) {
                 direction = "left";
-                playerPosX -= playerSpeed;
             }
             if (KeyBoardAction.right) {
                 direction = "right";
-                playerPosX += playerSpeed;
+            }
+
+            collision = false;
+            if (playerPosX >= 10 && playerPosX + gp.cellSize + 10 <= gp.locationWidth
+                    && playerPosY + gp.cellSize + 10 <= gp.locationHeight && playerPosY >= 10){
+                    gp.cc.checkCollision(this);
+            }
+
+            if (collision == false){
+                switch (direction) {
+                    case "up":
+                        if(playerPosX >= 10 && playerPosX + gp.cellSize + 10 <= gp.locationWidth) {
+                            playerPosY -= playerSpeed;
+                        }
+                        break;
+                    case "down":
+                        if(playerPosX >= 10 && playerPosX + gp.cellSize + 10 <= gp.locationWidth){
+                            playerPosY += playerSpeed;
+                        }
+                        break;
+                    case "left":
+                        if(playerPosY + gp.cellSize + 10 <= gp.locationHeight && playerPosY >= 10) {
+                            playerPosX -= playerSpeed;
+                        }
+                        break;
+                    case "right":
+                        if(playerPosY + gp.cellSize + 10 <= gp.locationHeight && playerPosY >= 10) {
+                            playerPosX += playerSpeed;
+                        }
+                        break;
+                }
             }
             imageCounter++;
             if (imageCounter > 12) {
@@ -60,17 +88,13 @@ public class Player implements Entity
                 }
                 imageCounter = 0;
             }
-
-            System.out.println();
-            System.out.print("X: " + playerPosX + " - Y: " + playerPosY );
-            System.out.println();
         }
     }
 
     @Override
     public void setEntityLocation() {
-        playerPosX = 100;
-        playerPosY = 100;
+        playerPosX = gp.locationWidth/2;
+        playerPosY = gp.locationHeight/2;
         playerSpeed = 4;
         direction = "down";
     }

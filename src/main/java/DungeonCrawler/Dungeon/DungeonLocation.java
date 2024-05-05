@@ -1,9 +1,11 @@
 package DungeonCrawler.Dungeon;
 
 import DungeonCrawler.Entities.Player;
+import DungeonCrawler.GameManeger.GamePanel;
 
 public class DungeonLocation {
     Player player;
+    GamePanel gp;
     public int locationWidth = 1728;
     public int locationHeight = 960;
     int worldColumn;
@@ -26,7 +28,7 @@ public class DungeonLocation {
         worldRow = 0;
         worldColumn = 0;
     }
-    public int getWorldLocation() {
+    public int getCurrentWorldLocation() {
         if (player.playerPosX > locationWidth) {
             player.playerPosX = 0;
             worldColumn++;
@@ -47,8 +49,6 @@ public class DungeonLocation {
             worldColumn = worldColumn;
             worldRow = worldRow;
         }
-        locationNum = worldMap[worldRow][worldColumn];
-
-        return locationNum;
+        return worldMap[worldRow][worldColumn];
     }
 }

@@ -4,6 +4,7 @@ import DungeonCrawler.Dungeon.DrawLocation;
 import DungeonCrawler.Dungeon.DungeonLocation;
 import DungeonCrawler.Entities.Player;
 import DungeonCrawler.Entity;
+import DungeonCrawler.Recourses.CollisionChecker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,12 +21,14 @@ public class GamePanel extends JPanel implements Runnable{
 
     public int FPS = 60;
     public int currentLocationNum;
+    public int nextLocationNum;
 
     KeyBoardAction key = new KeyBoardAction();
     Thread gameThread;
     Entity player = new Player(this);
     DungeonLocation dl = new DungeonLocation((Player) player);
     DrawLocation drawLocation = new DrawLocation(this);
+    public CollisionChecker cc = new CollisionChecker(this);
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(locationWidth, locationHeight));
@@ -66,7 +69,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
         player.moveEntity();
-        currentLocationNum = dl.getWorldLocation();
+        currentLocationNum = dl.getCurrentWorldLocation();
         drawLocation.getNewLocation();
     }
 

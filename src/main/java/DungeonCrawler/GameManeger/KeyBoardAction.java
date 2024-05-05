@@ -9,6 +9,7 @@ public class KeyBoardAction implements KeyListener {
     public static boolean left = false;
     public static boolean right = false;
 
+
     @Override
     public void keyTyped(KeyEvent e)
     {
