@@ -30,7 +30,7 @@ public class CollisionChecker {
         int cellValue2;
 
         switch (player.direction) {
-            case "up":
+            case UP:
                 playerTopRow = (playerTop - player.playerSpeed) / Config.CELL_SIZE;
                 cellValue1 = currentLocation[playerTopRow][playerLeftColumn];
                 cellValue2 = currentLocation[playerTopRow][playerRightColumn];
@@ -44,7 +44,7 @@ public class CollisionChecker {
                 }
 
                 break;
-            case "down":
+            case DOWN:
                 playerBottomRow = (playerBottom + player.playerSpeed) / Config.CELL_SIZE;
                 cellValue1 = currentLocation[playerBottomRow][playerLeftColumn];
                 cellValue2 = currentLocation[playerBottomRow][playerRightColumn];
@@ -58,7 +58,7 @@ public class CollisionChecker {
                 }
 
                 break;
-            case "left":
+            case LEFT:
                 playerLeftColumn = (playerLeft - player.playerSpeed) / Config.CELL_SIZE;
                 cellValue1 = currentLocation[playerTopRow][playerLeftColumn];
                 cellValue2 = currentLocation[playerBottomRow][playerLeftColumn];
@@ -72,7 +72,7 @@ public class CollisionChecker {
                 }
 
                 break;
-            case "right":
+            case RIGHT:
                 playerRightColumn = (playerRight + player.playerSpeed) / Config.CELL_SIZE;
                 cellValue1 = currentLocation[playerTopRow][playerRightColumn];
                 cellValue2 = currentLocation[playerBottomRow][playerRightColumn];

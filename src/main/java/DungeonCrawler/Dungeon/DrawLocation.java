@@ -43,7 +43,6 @@ public class DrawLocation {
             y += Config.CELL_SIZE;
             x = 0;
         }
-
     }
     public void getCellImage() {
         try {

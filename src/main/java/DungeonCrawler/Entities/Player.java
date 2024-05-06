@@ -2,6 +2,7 @@ package DungeonCrawler.Entities;
 
 import DungeonCrawler.Config;
 import DungeonCrawler.GameManeger.GamePanel;
+import DungeonCrawler.controller.Direction;
 import DungeonCrawler.controller.KeyBoardAction;
 import DungeonCrawler.ui.ImageReader;
 
@@ -14,7 +15,7 @@ public class Player {
     GamePanel gp;
     ImageReader imgR = new ImageReader();
 
-    public String direction;
+    public Direction direction;
 
     public int playerPosX;
     public int playerPosY;
@@ -38,16 +39,16 @@ public class Player {
     public void moveEntity() {
         if (KeyBoardAction.down || KeyBoardAction.up || KeyBoardAction.left || KeyBoardAction.right) {
             if (KeyBoardAction.up) {
-                direction = "up";
+                direction = Direction.UP;
             }
             if (KeyBoardAction.down) {
-                direction = "down";
+                direction = Direction.DOWN;
             }
             if (KeyBoardAction.left) {
-                direction = "left";
+                direction = Direction.LEFT;
             }
             if (KeyBoardAction.right) {
-                direction = "right";
+                direction = Direction.RIGHT;
             }
             slow = false;
             collision = false;
@@ -60,22 +61,22 @@ public class Player {
             resetPlayerSpeed();
             if (collision == false) {
                 switch (direction) {
-                    case "up":
+                    case UP:
                         if (playerPosX >= 10 && playerPosX + Config.CELL_SIZE + 10 <= Config.LOCATION_WIDTH) {
                             playerPosY -= playerSpeed;
                         }
                         break;
-                    case "down":
+                    case DOWN:
                         if (playerPosX >= 10 && playerPosX + Config.CELL_SIZE + 10 <= Config.LOCATION_WIDTH) {
                             playerPosY += playerSpeed;
                         }
                         break;
-                    case "left":
+                    case LEFT:
                         if (playerPosY + Config.CELL_SIZE + 10 <= Config.LOCATION_HEIGHT && playerPosY >= 10) {
                             playerPosX -= playerSpeed;
                         }
                         break;
-                    case "right":
+                    case RIGHT:
                         if (playerPosY + Config.CELL_SIZE + 10 <= Config.LOCATION_HEIGHT && playerPosY >= 10) {
                             playerPosX += playerSpeed;
                         }
@@ -97,7 +98,7 @@ public class Player {
         public void setEntityLocation () {
             playerPosX = Config.LOCATION_WIDTH / 2;
             playerPosY = Config.LOCATION_HEIGHT / 2;
-            direction = "down";
+            direction = Direction.DOWN;
         }
 
         public void getEntityImage () {
@@ -128,7 +129,7 @@ public class Player {
             BufferedImage img = null;
 
             switch (direction) {
-                case "up":
+                case UP:
                     if (imageNum == 1) {
                         img = upD1;
                     }
@@ -136,7 +137,7 @@ public class Player {
                         img = upD2;
                     }
                     break;
-                case "down":
+                case DOWN:
                     if (imageNum == 1) {
                         img = downD1;
                     }
@@ -144,7 +145,7 @@ public class Player {
                         img = downD2;
                     }
                     break;
-                case "left":
+                case LEFT:
                     if (imageNum == 1) {
                         img = leftD1;
                     }
@@ -152,7 +153,7 @@ public class Player {
                         img = leftD2;
                     }
                     break;
-                case "right":
+                case RIGHT:
                     if (imageNum == 1) {
                         img = rightD1;
                     }
