@@ -1,18 +1,14 @@
-package DungeonCrawler.GameManeger;
+package DungeonCrawler.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyBoardAction implements KeyListener {
-    public static boolean up = false;
-    public static boolean down = false;
-    public static boolean left = false;
-    public static boolean right = false;
 
+    public static boolean up, down, left, right = false;
 
     @Override
-    public void keyTyped(KeyEvent e)
-    {
+    public void keyTyped(KeyEvent e) {
     }
 
     @Override
@@ -36,7 +32,7 @@ public class KeyBoardAction implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_W) {
-            up =false;
+            up = false;
         }
         if (key == KeyEvent.VK_S) {
             down = false;

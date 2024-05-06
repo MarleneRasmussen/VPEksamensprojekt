@@ -1,8 +1,9 @@
 package DungeonCrawler.Dungeon;
 
+import DungeonCrawler.Config;
 import DungeonCrawler.GameManeger.GamePanel;
 import DungeonCrawler.Recourses.Cell;
-import DungeonCrawler.Recourses.ImageReader;
+import DungeonCrawler.ui.ImageReader;
 
 import java.awt.*;
 import java.io.IOException;
@@ -36,10 +37,10 @@ public class DrawLocation {
         for (i = 0; i < col; i++) {
             for (j = 0; j < row; j++) {
                 int value = currentLocation[i][j];
-                g2.drawImage(cell[value].image, x, y, gp.cellSize, gp.cellSize, null);
-                x += gp.cellSize;
+                g2.drawImage(cell[value].image, x, y, Config.CELL_SIZE, Config.CELL_SIZE, null);
+                x += Config.CELL_SIZE;
             }
-            y += gp.cellSize;
+            y += Config.CELL_SIZE;
             x = 0;
         }
 

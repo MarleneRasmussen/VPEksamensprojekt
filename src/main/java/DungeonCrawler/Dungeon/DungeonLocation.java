@@ -1,5 +1,4 @@
 package DungeonCrawler.Dungeon;
-
 import DungeonCrawler.Entities.Player;
 import DungeonCrawler.GameManeger.GamePanel;
 

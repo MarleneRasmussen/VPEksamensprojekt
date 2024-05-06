@@ -1,5 +1,6 @@
 package DungeonCrawler.Recourses;
 
+import DungeonCrawler.Config;
 import DungeonCrawler.Dungeon.Locations;
 import DungeonCrawler.Entities.Player;
 import DungeonCrawler.GameManeger.GamePanel;
@@ -15,53 +16,77 @@ public class CollisionChecker {
     public void checkCollision(Player player){
         int [][] currentLocation = location.returnLocation(gp.currentLocationNum);
 
-        int playerLeft = player.playerPosX;
-        int playerRight = player.playerPosX + gp.cellSize;
-        int playerTop = player.playerPosY;
-        int playerBottom = player.playerPosY + gp.cellSize;
+        int playerLeft = player.playerPosX + Config.CELL_SIZE/3;
+        int playerRight = player.playerPosX + (Config.CELL_SIZE/3)*2;
+        int playerTop = player.playerPosY + Config.CELL_SIZE/3;
+        int playerBottom = player.playerPosY + Config.CELL_SIZE;
 
-        int playerRightColumn = playerRight / gp.cellSize;
-        int playerLeftColumn = playerLeft / gp.cellSize;
-        int playerTopRow = playerTop / gp.cellSize;
-        int playerBottomRow = playerBottom / gp.cellSize;
+        int playerRightColumn = playerRight / Config.CELL_SIZE;
+        int playerLeftColumn = playerLeft / Config.CELL_SIZE;
+        int playerTopRow = playerTop / Config.CELL_SIZE;
+        int playerBottomRow = playerBottom / Config.CELL_SIZE;
 
-        int cellNum1;
-        int cellNum2;
+        int cellValue1;
+        int cellValue2;
 
-            switch (player.direction) {
-                case "up":
-                    playerTopRow = (playerTop - player.playerSpeed) / gp.cellSize;
-                    cellNum1 = currentLocation[playerTopRow][playerLeftColumn];
-                    cellNum2 = currentLocation[playerTopRow][playerRightColumn];
-                    if (cellNum1 == 12 || cellNum2 == 12)
-                        player.collision = true;
+        switch (player.direction) {
+            case "up":
+                playerTopRow = (playerTop - player.playerSpeed) / Config.CELL_SIZE;
+                cellValue1 = currentLocation[playerTopRow][playerLeftColumn];
+                cellValue2 = currentLocation[playerTopRow][playerRightColumn];
+                if (cellValue1 == 12 || cellValue2 == 12)
+                    player.collision = true;
+                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                    player.slow = true;
+                }
+                else{
+                    player.slow = false;
+                }
 
-                    break;
-                case "down":
-                    playerBottomRow = (playerBottom + player.playerSpeed) / gp.cellSize;
-                    cellNum1 = currentLocation[playerBottomRow][playerLeftColumn];
-                    cellNum2 = currentLocation[playerBottomRow][playerRightColumn];
-                    if (cellNum1 == 12 || cellNum2 == 12)
-                        player.collision = true;
+                break;
+            case "down":
+                playerBottomRow = (playerBottom + player.playerSpeed) / Config.CELL_SIZE;
+                cellValue1 = currentLocation[playerBottomRow][playerLeftColumn];
+                cellValue2 = currentLocation[playerBottomRow][playerRightColumn];
+                if (cellValue1 == 12 || cellValue2 == 12)
+                    player.collision = true;
+                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                    player.slow = true;
+                }
+                else{
+                    player.slow = false;
+                }
 
-                    break;
-                case "left":
-                    playerLeftColumn = (playerLeft - player.playerSpeed) / gp.cellSize;
-                    cellNum1 = currentLocation[playerTopRow][playerLeftColumn];
-                    cellNum2 = currentLocation[playerBottomRow][playerLeftColumn];
-                    if (cellNum1 == 12 || cellNum2 == 12)
-                        player.collision = true;
+                break;
+            case "left":
+                playerLeftColumn = (playerLeft - player.playerSpeed) / Config.CELL_SIZE;
+                cellValue1 = currentLocation[playerTopRow][playerLeftColumn];
+                cellValue2 = currentLocation[playerBottomRow][playerLeftColumn];
+                if (cellValue1 == 12 || cellValue2 == 12)
+                    player.collision = true;
+                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                    player.slow = true;
+                }
+                else{
+                    player.slow = false;
+                }
 
-                    break;
-                case "right":
-                    playerRightColumn = (playerRight + player.playerSpeed) / gp.cellSize;
-                    cellNum1 = currentLocation[playerTopRow][playerRightColumn];
-                    cellNum2 = currentLocation[playerBottomRow][playerRightColumn];
-                    if (cellNum1 == 12 || cellNum2 == 12)
-                        player.collision = true;
+                break;
+            case "right":
+                playerRightColumn = (playerRight + player.playerSpeed) / Config.CELL_SIZE;
+                cellValue1 = currentLocation[playerTopRow][playerRightColumn];
+                cellValue2 = currentLocation[playerBottomRow][playerRightColumn];
+                if (cellValue1 == 12 || cellValue2 == 12)
+                    player.collision = true;
+                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                    player.slow = true;
+                }
+                else{
+                    player.slow = false;
+                }
 
-                    break;
-            }
+                break;
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-package DungeonCrawler.Recourses;
+package DungeonCrawler.ui;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

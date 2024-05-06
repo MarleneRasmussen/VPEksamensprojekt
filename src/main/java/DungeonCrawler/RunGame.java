@@ -1,11 +1,11 @@
 package DungeonCrawler;
 
-import DungeonCrawler.GameManeger.CreateGameFrame;
+import DungeonCrawler.GameManeger.GameFrame;
 
 public class RunGame {
     public static void main(String[] args)
     {
-        GameFrame gameFrame = new CreateGameFrame();
-        gameFrame.createGameFrame();
+        Frame gameFrame = new GameFrame();
+        gameFrame.addGameFrame();
     }
 }

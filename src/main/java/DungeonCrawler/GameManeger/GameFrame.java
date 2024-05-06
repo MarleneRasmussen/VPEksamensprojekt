@@ -1,12 +1,12 @@
 package DungeonCrawler.GameManeger;
 
-import DungeonCrawler.GameFrame;
+import DungeonCrawler.Frame;
 
 import javax.swing.*;
 
-public class CreateGameFrame implements GameFrame {
+public class GameFrame implements Frame {
     @Override
-    public void createGameFrame() {
+    public void addGameFrame() {
         JFrame frame = new JFrame("Dungeon Crawler");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
