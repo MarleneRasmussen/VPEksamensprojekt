@@ -2,23 +2,23 @@ package DungeonCrawler.Dungeon;
 
 import DungeonCrawler.Config;
 import DungeonCrawler.GameManeger.GamePanel;
-import DungeonCrawler.Recourses.Cell;
+import DungeonCrawler.ui.Cells;
 import DungeonCrawler.ui.ImageReader;
 
 import java.awt.*;
-import java.io.IOException;
+
 
 public class DrawLocation {
     GamePanel gp;
     Locations locations = new Locations();
     ImageReader reader = new ImageReader();
-    Cell[] cell = new Cell[14];
+    Cells cell;
 
-    public int [][] currentLocation;
+    public Cells [][] currentLocation;
 
     public DrawLocation(GamePanel gp) {
         this.gp = gp;
-        getCellImage();
+        //getCellImage();
     }
     public void getNewLocation() {
         currentLocation = locations.returnLocation(gp.currentLocationNum);
@@ -36,16 +36,16 @@ public class DrawLocation {
 
         for (i = 0; i < col; i++) {
             for (j = 0; j < row; j++) {
-                int value = currentLocation[i][j];
-                g2.drawImage(cell[value].image, x, y, Config.CELL_SIZE, Config.CELL_SIZE, null);
+                cell = currentLocation[i][j];
+                g2.drawImage(cell.getImage(), x, y, Config.CELL_SIZE, Config.CELL_SIZE, null);
                 x += Config.CELL_SIZE;
             }
             y += Config.CELL_SIZE;
             x = 0;
         }
     }
-    public void getCellImage() {
-        try {
+    /*public void getCellImage() {
+         try {
             cell[0] = new Cell();
             cell[0].image = reader.readImage("/Cells/BlackSpace.png");
 
@@ -91,5 +91,5 @@ public class DrawLocation {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

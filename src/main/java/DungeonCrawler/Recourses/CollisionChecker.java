@@ -4,17 +4,19 @@ import DungeonCrawler.Config;
 import DungeonCrawler.Dungeon.Locations;
 import DungeonCrawler.Entities.Player;
 import DungeonCrawler.GameManeger.GamePanel;
+import DungeonCrawler.ui.Cells;
 
 public class CollisionChecker {
     GamePanel gp;
     Locations location = new Locations();
+    Cells[][] currentLocation;
 
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
     }
 
     public void checkCollision(Player player){
-        int [][] currentLocation = location.returnLocation(gp.currentLocationNum);
+        currentLocation = location.returnLocation(gp.currentLocationNum);
 
         int playerLeft = player.playerPosX + Config.CELL_SIZE/3;
         int playerRight = player.playerPosX + (Config.CELL_SIZE/3)*2;
@@ -26,64 +28,64 @@ public class CollisionChecker {
         int playerTopRow = playerTop / Config.CELL_SIZE;
         int playerBottomRow = playerBottom / Config.CELL_SIZE;
 
-        int cellValue1;
-        int cellValue2;
+        boolean cellValue1;
+        boolean cellValue2;
 
         switch (player.direction) {
             case UP:
                 playerTopRow = (playerTop - player.playerSpeed) / Config.CELL_SIZE;
-                cellValue1 = currentLocation[playerTopRow][playerLeftColumn];
-                cellValue2 = currentLocation[playerTopRow][playerRightColumn];
-                if (cellValue1 == 12 || cellValue2 == 12)
+                cellValue1 = currentLocation[playerTopRow][playerLeftColumn].isSolid();
+                cellValue2 = currentLocation[playerTopRow][playerRightColumn].isSolid();
+                if (cellValue1 || cellValue2)
                     player.collision = true;
-                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                /*else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
                     player.slow = true;
                 }
                 else{
                     player.slow = false;
-                }
+                }*/
 
                 break;
             case DOWN:
                 playerBottomRow = (playerBottom + player.playerSpeed) / Config.CELL_SIZE;
-                cellValue1 = currentLocation[playerBottomRow][playerLeftColumn];
-                cellValue2 = currentLocation[playerBottomRow][playerRightColumn];
-                if (cellValue1 == 12 || cellValue2 == 12)
+                cellValue1 = currentLocation[playerBottomRow][playerLeftColumn].isSolid();
+                cellValue2 = currentLocation[playerBottomRow][playerRightColumn].isSolid();
+                if (cellValue1 || cellValue2)
                     player.collision = true;
-                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                /*else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
                     player.slow = true;
                 }
                 else{
                     player.slow = false;
-                }
+                }*/
 
                 break;
             case LEFT:
                 playerLeftColumn = (playerLeft - player.playerSpeed) / Config.CELL_SIZE;
-                cellValue1 = currentLocation[playerTopRow][playerLeftColumn];
-                cellValue2 = currentLocation[playerBottomRow][playerLeftColumn];
-                if (cellValue1 == 12 || cellValue2 == 12)
+                cellValue1 = currentLocation[playerTopRow][playerLeftColumn].isSolid();
+                cellValue2 = currentLocation[playerBottomRow][playerLeftColumn].isSolid();
+                if (cellValue1 || cellValue2)
                     player.collision = true;
-                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                /*else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
                     player.slow = true;
                 }
                 else{
                     player.slow = false;
-                }
+                }*/
 
                 break;
             case RIGHT:
                 playerRightColumn = (playerRight + player.playerSpeed) / Config.CELL_SIZE;
-                cellValue1 = currentLocation[playerTopRow][playerRightColumn];
-                cellValue2 = currentLocation[playerBottomRow][playerRightColumn];
-                if (cellValue1 == 12 || cellValue2 == 12)
+                cellValue1 = currentLocation[playerTopRow][playerRightColumn].isSolid();
+                cellValue2 = currentLocation[playerBottomRow][playerRightColumn].isSolid();
+                if (cellValue1 || cellValue2)
                     player.collision = true;
-                else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
+                /*else if (cellValue1 == 1 || cellValue2 == 1 || cellValue1 == 2 || cellValue2 == 2 ) {
                     player.slow = true;
                 }
                 else{
                     player.slow = false;
-                }
+                }*/
 
                 break;
         }
