@@ -1,6 +1,7 @@
 package DungeonCrawler.Entities;
 
 import DungeonCrawler.Config;
+import DungeonCrawler.GameManeger.GameEngine;
 import DungeonCrawler.GameManeger.GamePanel;
 import DungeonCrawler.controller.Direction;
 import DungeonCrawler.controller.KeyBoardAction;
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 public class Player {
 
+    GameEngine gameEngine;
     GamePanel gp;
     ImageReader imgR = new ImageReader();
 
@@ -29,12 +31,11 @@ public class Player {
     public int imageCounter = 0;
     public int imageNum = 1;
 
-    public Player(GamePanel gp) {
+    public Player(GamePanel gp){
         this.gp = gp;
         getEntityImage();
         setEntityLocation();
     }
-
 
     public void moveEntity() {
         if (KeyBoardAction.down || KeyBoardAction.up || KeyBoardAction.left || KeyBoardAction.right) {
@@ -55,11 +56,11 @@ public class Player {
 
             if (playerPosX >= 10 && playerPosX + Config.CELL_SIZE + 10 <= Config.LOCATION_WIDTH
                     && playerPosY + Config.CELL_SIZE + 10 <= Config.LOCATION_HEIGHT && playerPosY >= 10) {
-                gp.cc.checkCollision(this);
+                GameEngine.collisionChecker.checkCollision(this);
             }
 
-            resetPlayerSpeed();
-            if (collision == false) {
+            setPlayerSpeed();
+            if (!collision) {
                 switch (direction) {
                     case UP:
                         if (playerPosX >= 10 && playerPosX + Config.CELL_SIZE + 10 <= Config.LOCATION_WIDTH) {
@@ -116,14 +117,13 @@ public class Player {
             }
         }
 
-        public void resetPlayerSpeed() {
+        public void setPlayerSpeed() {
             if (slow) {
                 playerSpeed = speedDecrease;
             } else {
                 playerSpeed = 5;
             }
         }
-
 
         public void drawEntity (Graphics2D g2){
             BufferedImage img = null;

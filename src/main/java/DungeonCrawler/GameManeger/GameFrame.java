@@ -19,6 +19,5 @@ public class GameFrame implements Frame {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        panel.startGameThread();
     }
 }

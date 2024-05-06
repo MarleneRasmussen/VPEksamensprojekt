@@ -1,16 +1,12 @@
 package DungeonCrawler.Dungeon;
 import DungeonCrawler.Entities.Player;
-import DungeonCrawler.GameManeger.GamePanel;
 
 public class DungeonLocation {
     Player player;
-    GamePanel gp;
     public int locationWidth = 1728;
     public int locationHeight = 960;
     int worldColumn;
     int worldRow;
-
-    public int locationNum;
 
     public int[][] worldMap = {
             {1, 2, 3, 4, 5},
@@ -43,10 +39,6 @@ public class DungeonLocation {
         if (player.playerPosY < 0) {
             player.playerPosY = locationHeight;
             worldRow--;
-        }
-        else{
-            worldColumn = worldColumn;
-            worldRow = worldRow;
         }
         return worldMap[worldRow][worldColumn];
     }

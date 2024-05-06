@@ -40,4 +40,7 @@ public enum Cells {
      public boolean isSolid() {
          return isSolid;
      }
+     public int getSpeedImpact() {
+         return speedImpact;
+     }
 }

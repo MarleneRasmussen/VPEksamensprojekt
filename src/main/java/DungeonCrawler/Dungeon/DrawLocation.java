@@ -1,6 +1,7 @@
 package DungeonCrawler.Dungeon;
 
 import DungeonCrawler.Config;
+import DungeonCrawler.GameManeger.GameLogic;
 import DungeonCrawler.GameManeger.GamePanel;
 import DungeonCrawler.ui.Cells;
 import DungeonCrawler.ui.ImageReader;
@@ -13,15 +14,16 @@ public class DrawLocation {
     Locations locations = new Locations();
     ImageReader reader = new ImageReader();
     Cells cell;
+    GameLogic gl;
 
     public Cells [][] currentLocation;
 
     public DrawLocation(GamePanel gp) {
         this.gp = gp;
-        //getCellImage();
+
     }
     public void getNewLocation() {
-        currentLocation = locations.returnLocation(gp.currentLocationNum);
+        currentLocation = locations.returnLocation(GameLogic.currentLocationNum);
     }
 
     public void drawCurrentLocation(Graphics g2) {
@@ -44,52 +46,4 @@ public class DrawLocation {
             x = 0;
         }
     }
-    /*public void getCellImage() {
-         try {
-            cell[0] = new Cell();
-            cell[0].image = reader.readImage("/Cells/BlackSpace.png");
-
-            cell[1] = new Cell();
-            cell[1].image = reader.readImage("/Cells/Grass.png");
-
-            cell[2] = new Cell();
-            cell[2].image = reader.readImage("/Cells/Sand.png");
-
-            cell[3] = new Cell();
-            cell[3].image = reader.readImage("/Cells/Tile.png");
-
-            cell[4] = new Cell();
-            cell[4].image = reader.readImage("/Cells/Tile_SandBL.png");
-
-            cell[5] = new Cell();
-            cell[5].image = reader.readImage("/Cells/Tile_SandBottom.png");
-
-            cell[6] = new Cell();
-            cell[6].image = reader.readImage("/Cells/Tile_SandBR.png");
-
-            cell[7] = new Cell();
-            cell[7].image = reader.readImage("/Cells/Tile_SandLeft.png");
-
-            cell[8] = new Cell();
-            cell[8].image = reader.readImage("/Cells/Tile_SandRight.png");
-
-            cell[9] = new Cell();
-            cell[9].image = reader.readImage("/Cells/Tile_SandTL.png");
-
-            cell[10] = new Cell();
-            cell[10].image = reader.readImage("/Cells/Tile_SandTop.png");
-
-            cell[11] = new Cell();
-            cell[11].image = reader.readImage("/Cells/Tile_SandTR.png");
-
-            cell[12] = new Cell();
-            cell[12].image = reader.readImage("/Cells/Wall.png");
-
-            cell[13] = new Cell();
-            cell[13].image = reader.readImage("/Cells/Lava.png");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

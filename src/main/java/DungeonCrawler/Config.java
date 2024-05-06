@@ -10,4 +10,6 @@ public class Config {
     public static final int LOCATION_ROW = 10;
     public static final int LOCATION_WIDTH = LOCATION_COLUMN * CELL_SIZE;
     public static final int LOCATION_HEIGHT = LOCATION_ROW * CELL_SIZE;
+    public static final int FPS = 60;
+    public static final double INTERVAL = (double) 1000000000 /FPS;
 }
