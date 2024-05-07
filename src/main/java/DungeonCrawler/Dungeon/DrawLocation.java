@@ -1,6 +1,7 @@
 package DungeonCrawler.Dungeon;
 
 import DungeonCrawler.Config;
+import DungeonCrawler.GameManeger.GameEngine;
 import DungeonCrawler.GameManeger.GameLogic;
 import DungeonCrawler.GameManeger.GamePanel;
 import DungeonCrawler.ui.Cells;
@@ -10,20 +11,14 @@ import java.awt.*;
 
 
 public class DrawLocation {
-    GamePanel gp;
     Locations locations = new Locations();
     ImageReader reader = new ImageReader();
     Cells cell;
-    GameLogic gl;
 
     public Cells [][] currentLocation;
 
-    public DrawLocation(GamePanel gp) {
-        this.gp = gp;
-
-    }
     public void getNewLocation() {
-        currentLocation = locations.returnLocation(GameLogic.currentLocationNum);
+        currentLocation = locations.returnLocation(GameEngine.currentLocationNum);
     }
 
     public void drawCurrentLocation(Graphics g2) {

@@ -10,9 +10,8 @@ import java.awt.*;
 
 public class GamePanel extends JPanel {
 
-    Player player = new Player(this);
     KeyBoardAction key = new KeyBoardAction();
-    DrawLocation drawLocation = new DrawLocation(this);
+
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(Config.LOCATION_WIDTH, Config.LOCATION_HEIGHT));
@@ -27,10 +26,10 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         try {
-            drawLocation.drawCurrentLocation(g2);
+            GameEngine.drawLocation.drawCurrentLocation(g2);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        player.drawEntity(g2);
+        GameEngine.player.drawEntity(g2);
     }
 }

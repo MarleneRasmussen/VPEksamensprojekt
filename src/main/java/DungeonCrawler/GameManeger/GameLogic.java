@@ -4,16 +4,13 @@ import DungeonCrawler.Dungeon.DrawLocation;
 import DungeonCrawler.Dungeon.DungeonLocation;
 import DungeonCrawler.Entities.Player;
 
+import static DungeonCrawler.GameManeger.GameEngine.dungeonLocation;
+
 public class GameLogic {
 
-    static Player player;
-    public static int currentLocationNum;
-    static DungeonLocation dl;
-    static DrawLocation drawLocation;
-
     public static void updateGame(){
-        player.moveEntity();
-        currentLocationNum = dl.getCurrentWorldLocation();
-        drawLocation.getNewLocation();
+        GameEngine.player.moveEntity();
+        GameEngine.currentLocationNum = dungeonLocation.getCurrentWorldLocation();
+        GameEngine.drawLocation.getNewLocation();
     }
 }

@@ -3,7 +3,7 @@ package DungeonCrawler.Recourses;
 import DungeonCrawler.Config;
 import DungeonCrawler.Dungeon.Locations;
 import DungeonCrawler.Entities.Player;
-import DungeonCrawler.GameManeger.GameLogic;
+import DungeonCrawler.GameManeger.GameEngine;
 import DungeonCrawler.ui.Cells;
 
 public class CollisionChecker {
@@ -11,7 +11,7 @@ public class CollisionChecker {
     Locations location = new Locations();
 
     public void checkCollision(Player player){
-        Cells [][] currentLocation = location.returnLocation(GameLogic.currentLocationNum);
+        Cells [][] currentLocation = location.returnLocation(GameEngine.currentLocationNum);
 
         int playerLeft = player.playerPosX + Config.CELL_SIZE/3;
         int playerRight = player.playerPosX + (Config.CELL_SIZE/3)*2;
