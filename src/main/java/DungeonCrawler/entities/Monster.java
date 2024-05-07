@@ -3,19 +3,62 @@ package DungeonCrawler.entities;
 import DungeonCrawler.Config;
 import DungeonCrawler.gameManager.GameEngine;
 
-import java.awt.*;
-
 public class Monster {
-    public int monsterPosX =100;
-    public int monsterPosY=100;
+    public int monsterPosX;
+    public int monsterPosY;
+    public int mLocationNum;
+    public int monsterSpeed;
 
-    public static int mLocationNum = 2;
+    public Monster(int monsterPosX, int monsterPosY, int monsterSpeed, int mLocationNum) {
+        this.monsterPosX = monsterPosX;
+        this.monsterPosY = monsterPosY;
+        this.monsterSpeed = monsterSpeed;
+        this.mLocationNum = mLocationNum;
+    }
 
-    public void drawMonster(Graphics2D g2) {
+    public int getPosX() {
+        return monsterPosX;
+    }
+
+    public int getPosY() {
+        return monsterPosY;
+    }
+
+    public int getLocationNum() {
+        return mLocationNum;
+    }
+
+    public int getMonsterSpeed() {
+        return monsterSpeed;
+    }
+
+
+    public void update() {
         if (mLocationNum == GameEngine.currentLocationNum) {
-
-            g2.setColor(Color.RED);
-            g2.fillRect(monsterPosX, monsterPosY, Config.CELL_SIZE, Config.CELL_SIZE);
+            int random = (int) (Math.random() * 4);
+            switch (random) {
+                case 0:
+                    if (monsterPosX + Config.CELL_SIZE < Config.LOCATION_WIDTH - Config.CELL_SIZE) {
+                        monsterPosX += monsterSpeed;
+                    }
+                    break;
+                case 1:
+                    if (monsterPosX - Config.CELL_SIZE > 0) {
+                        monsterPosX -= monsterSpeed;
+                    }
+                    break;
+                case 2:
+                    if (monsterPosY + Config.CELL_SIZE < Config.LOCATION_HEIGHT - Config.CELL_SIZE) {
+                        monsterPosY += monsterSpeed;
+                    }
+                    break;
+                case 3:
+                    if (monsterPosY - Config.CELL_SIZE > 0) {
+                        monsterPosY -= monsterSpeed;
+                    }
+                    break;
+            }
         }
     }
 }
+

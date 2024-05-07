@@ -4,7 +4,9 @@ import DungeonCrawler.Config;
 import DungeonCrawler.dungeon.DrawLocation;
 import DungeonCrawler.dungeon.DungeonLocation;
 import DungeonCrawler.Frame;
+
 import DungeonCrawler.entities.Monster;
+import DungeonCrawler.entities.Monsters;
 import DungeonCrawler.entities.Player;
 import DungeonCrawler.eventHandler.CollisionChecker;
 import DungeonCrawler.gameDisplay.GameWindow;
@@ -19,8 +21,8 @@ public class GameEngine {
     private static Thread gameThread;
 
     public static Player player;
-    public static Monster monster;
-    public static boolean monsterInRange;
+    public static Monsters monsters;
+
     public static int currentLocationNum;
     public static DungeonLocation dungeonLocation;
     public static DrawLocation drawLocation;
@@ -30,7 +32,11 @@ public class GameEngine {
         gamePanel = new GamePanel();
         collisionChecker = new CollisionChecker();
         player = new Player(gamePanel);
-        monster = new Monster();
+
+        monsters = new Monsters();
+        monsters.addMonster(new Monster(100,100,4,2));
+        monsters.addMonster(new Monster(500,500,4,2));
+
         dungeonLocation = new DungeonLocation(player);
         currentLocationNum = dungeonLocation.getCurrentWorldLocation();
 

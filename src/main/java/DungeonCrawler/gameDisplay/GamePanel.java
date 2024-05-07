@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
-
     KeyBoardAction key = new KeyBoardAction();
 
     public GamePanel(){
@@ -29,7 +28,7 @@ public class GamePanel extends JPanel {
             e.printStackTrace();
         }
         GameEngine.player.drawEntity(g2);
-        GameEngine.monster.drawMonster(g2);
+        GameEngine.monsters.drawMonsters(g2);
         }
 
     }
