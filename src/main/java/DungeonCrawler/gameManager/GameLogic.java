@@ -1,13 +1,8 @@
-package DungeonCrawler.GameManeger;
+package DungeonCrawler.gameManager;
 
-import DungeonCrawler.Dungeon.DrawLocation;
-import DungeonCrawler.Dungeon.DungeonLocation;
-import DungeonCrawler.Entities.Player;
-
-import static DungeonCrawler.GameManeger.GameEngine.dungeonLocation;
+import static DungeonCrawler.gameManager.GameEngine.dungeonLocation;
 
 public class GameLogic {
-
     public static void updateGame(){
         GameEngine.player.moveEntity();
         GameEngine.currentLocationNum = dungeonLocation.getCurrentWorldLocation();

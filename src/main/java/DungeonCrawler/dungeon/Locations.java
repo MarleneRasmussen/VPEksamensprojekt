@@ -1,9 +1,8 @@
-package DungeonCrawler.Dungeon;
+package DungeonCrawler.dungeon;
 
 import DungeonCrawler.ui.Cells;
 
-import static DungeonCrawler.ui.Cells.GR;
-import static DungeonCrawler.ui.Cells.WA;
+import static DungeonCrawler.ui.Cells.*;
 
 public class Locations {
 
@@ -90,9 +89,9 @@ public class Locations {
         private Cells[][] location1 = {
                 {WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA, WA},
                 {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, WA},
-                {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, WA},
-                {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, WA},
-                {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR},
+                {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, TI, TI, TI, GR, WA},
+                {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, TI, TI, TI, GR, WA},
+                {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, TI, TI, TI, GR, GR},
                 {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR},
                 {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, WA},
                 {WA, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, GR, WA},

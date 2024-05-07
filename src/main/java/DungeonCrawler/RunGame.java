@@ -1,7 +1,7 @@
 package DungeonCrawler;
 
-import DungeonCrawler.GameManeger.GameEngine;
-import DungeonCrawler.GameManeger.GameLogic;
+import DungeonCrawler.gameManager.GameEngine;
+import DungeonCrawler.gameManager.GameLogic;
 
 public class RunGame {
     public static void main(String[] args)

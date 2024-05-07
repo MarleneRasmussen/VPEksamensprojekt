@@ -1,18 +1,14 @@
-package DungeonCrawler.Dungeon;
+package DungeonCrawler.dungeon;
 
 import DungeonCrawler.Config;
-import DungeonCrawler.GameManeger.GameEngine;
-import DungeonCrawler.GameManeger.GameLogic;
-import DungeonCrawler.GameManeger.GamePanel;
+import DungeonCrawler.gameManager.GameEngine;
 import DungeonCrawler.ui.Cells;
-import DungeonCrawler.ui.ImageReader;
 
 import java.awt.*;
 
 
 public class DrawLocation {
     Locations locations = new Locations();
-    ImageReader reader = new ImageReader();
     Cells cell;
 
     public Cells [][] currentLocation;

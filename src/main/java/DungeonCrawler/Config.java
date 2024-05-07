@@ -12,4 +12,5 @@ public class Config {
     public static final int LOCATION_HEIGHT = LOCATION_ROW * CELL_SIZE;
     public static final int FPS = 60;
     public static final double INTERVAL = (double) 1000000000 /FPS;
+    public static final int DEFAULT_PLAYER_SPEED = 4;
 }

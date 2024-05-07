@@ -1,10 +1,10 @@
-package DungeonCrawler.Dungeon;
-import DungeonCrawler.Entities.Player;
+package DungeonCrawler.dungeon;
+
+import DungeonCrawler.Config;
+import DungeonCrawler.entities.Player;
 
 public class DungeonLocation {
     Player player;
-    public int locationWidth = 1728;
-    public int locationHeight = 960;
     int worldColumn;
     int worldRow;
 
@@ -24,20 +24,20 @@ public class DungeonLocation {
         worldColumn = 0;
     }
     public int getCurrentWorldLocation() {
-        if (player.playerPosX > locationWidth) {
+        if (player.playerPosX > Config.LOCATION_WIDTH){
             player.playerPosX = 0;
             worldColumn++;
         }
         if (player.playerPosX < 0) {
-            player.playerPosX = locationWidth;
+            player.playerPosX = Config.LOCATION_WIDTH;
             worldColumn--;
         }
-        if (player.playerPosY > locationHeight) {
-            player.playerPosY = 0;
+        if (player.playerPosY > Config.LOCATION_HEIGHT) {
+            player.playerPosY =0;
             worldRow++;
         }
         if (player.playerPosY < 0) {
-            player.playerPosY = locationHeight;
+            player.playerPosY = Config.LOCATION_HEIGHT;
             worldRow--;
         }
         return worldMap[worldRow][worldColumn];

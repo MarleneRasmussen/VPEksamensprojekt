@@ -1,9 +1,8 @@
-package DungeonCrawler.GameManeger;
+package DungeonCrawler.gameDisplay;
 
 import DungeonCrawler.Config;
-import DungeonCrawler.Dungeon.DrawLocation;
-import DungeonCrawler.Entities.Player;
 import DungeonCrawler.controller.KeyBoardAction;
+import DungeonCrawler.gameManager.GameEngine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +10,6 @@ import java.awt.*;
 public class GamePanel extends JPanel {
 
     KeyBoardAction key = new KeyBoardAction();
-
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(Config.LOCATION_WIDTH, Config.LOCATION_HEIGHT));
@@ -31,5 +29,8 @@ public class GamePanel extends JPanel {
             e.printStackTrace();
         }
         GameEngine.player.drawEntity(g2);
+        GameEngine.monster.drawMonster(g2);
+        }
+
     }
-}
+

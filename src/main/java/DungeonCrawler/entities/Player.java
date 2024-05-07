@@ -1,39 +1,35 @@
-package DungeonCrawler.Entities;
+package DungeonCrawler.entities;
 
 import DungeonCrawler.Config;
-import DungeonCrawler.GameManeger.GameEngine;
-import DungeonCrawler.GameManeger.GamePanel;
+import DungeonCrawler.eventHandler.CheckCurrentCell;
+import DungeonCrawler.gameManager.GameEngine;
+import DungeonCrawler.gameDisplay.GamePanel;
 import DungeonCrawler.controller.Direction;
 import DungeonCrawler.controller.KeyBoardAction;
-import DungeonCrawler.ui.ImageReader;
+import DungeonCrawler.ui.Cells;
+import DungeonCrawler.ui.EntityImage;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Player {
 
-    GameEngine gameEngine;
     GamePanel gp;
-    ImageReader imgR = new ImageReader();
 
     public Direction direction;
 
     public int playerPosX;
     public int playerPosY;
-    public int playerSpeed = 5;
-    public int speedDecrease = 3;
+    public int playerSpeed;
 
-    public BufferedImage upD1, upD2, leftD1, leftD2, rightD1, rightD2, downD1, downD2;
     public boolean collision = false;
-    public boolean slow = false;
+    Cells currentCell;
 
     public int imageCounter = 0;
     public int imageNum = 1;
 
     public Player(GamePanel gp){
         this.gp = gp;
-        getEntityImage();
         setEntityLocation();
     }
 
@@ -51,15 +47,16 @@ public class Player {
             if (KeyBoardAction.right) {
                 direction = Direction.RIGHT;
             }
-            slow = false;
-            collision = false;
 
+            playerSpeed = Config.DEFAULT_PLAYER_SPEED;
+            collision = false;
             if (playerPosX >= 10 && playerPosX + Config.CELL_SIZE + 10 <= Config.LOCATION_WIDTH
                     && playerPosY + Config.CELL_SIZE + 10 <= Config.LOCATION_HEIGHT && playerPosY >= 10) {
                 GameEngine.collisionChecker.checkCollision(this);
+                currentCell= CheckCurrentCell.getCurrentCell(this);
+                setPlayerSpeed();
             }
 
-            setPlayerSpeed();
             if (!collision) {
                 switch (direction) {
                     case UP:
@@ -102,27 +99,8 @@ public class Player {
             direction = Direction.DOWN;
         }
 
-        public void getEntityImage () {
-            try {
-                upD1 = imgR.readImage("/Player/PlayerUp_1.png");
-                upD2 = imgR.readImage("/Player/PlayerUp_2.png");
-                downD1 = imgR.readImage("/Player/PlayerDown_1.png");
-                downD2 = imgR.readImage("/Player/PlayerDown_2.png");
-                rightD1 = imgR.readImage("/Player/PlayerRight_1.png");
-                rightD2 = imgR.readImage("/Player/PlayerRight_2.png");
-                leftD1 = imgR.readImage("/Player/PlayerLeft_1.png");
-                leftD2 = imgR.readImage("/Player/PlayerLeft_2.png");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
         public void setPlayerSpeed() {
-            if (slow) {
-                playerSpeed = speedDecrease;
-            } else {
-                playerSpeed = 5;
-            }
+            playerSpeed = currentCell.getSpeedImpact();
         }
 
         public void drawEntity (Graphics2D g2){
@@ -131,34 +109,34 @@ public class Player {
             switch (direction) {
                 case UP:
                     if (imageNum == 1) {
-                        img = upD1;
+                        img = EntityImage.PLAYER_UP1.getImage();
                     }
                     if (imageNum == 2) {
-                        img = upD2;
+                        img = EntityImage.PLAYER_UP2.getImage();
                     }
                     break;
                 case DOWN:
                     if (imageNum == 1) {
-                        img = downD1;
+                        img = EntityImage.PLAYER_DOWN1.getImage();
                     }
                     if (imageNum == 2) {
-                        img = downD2;
+                        img = EntityImage.PLAYER_DOWN2.getImage();
                     }
                     break;
                 case LEFT:
                     if (imageNum == 1) {
-                        img = leftD1;
+                        img = EntityImage.PLAYER_LEFT1.getImage();
                     }
                     if (imageNum == 2) {
-                        img = leftD2;
+                        img = EntityImage.PLAYER_LEFT2.getImage();
                     }
                     break;
                 case RIGHT:
                     if (imageNum == 1) {
-                        img = rightD1;
+                        img = EntityImage.PLAYER_RIGHT1.getImage();
                     }
                     if (imageNum == 2) {
-                        img = rightD2;
+                        img = EntityImage.PLAYER_RIGHT2.getImage();
                     }
                     break;
             }

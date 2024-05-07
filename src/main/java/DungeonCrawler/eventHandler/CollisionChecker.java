@@ -1,9 +1,9 @@
-package DungeonCrawler.Recourses;
+package DungeonCrawler.eventHandler;
 
 import DungeonCrawler.Config;
-import DungeonCrawler.Dungeon.Locations;
-import DungeonCrawler.Entities.Player;
-import DungeonCrawler.GameManeger.GameEngine;
+import DungeonCrawler.dungeon.Locations;
+import DungeonCrawler.entities.Player;
+import DungeonCrawler.gameManager.GameEngine;
 import DungeonCrawler.ui.Cells;
 
 public class CollisionChecker {

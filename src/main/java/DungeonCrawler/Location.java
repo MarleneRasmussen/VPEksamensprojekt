@@ -1,6 +1,6 @@
 package DungeonCrawler;
 
-import DungeonCrawler.Dungeon.DungeonLocation;
+import DungeonCrawler.dungeon.DungeonLocation;
 
 import java.awt.*;
 

@@ -1,11 +1,14 @@
-package DungeonCrawler.GameManeger;
+package DungeonCrawler.gameManager;
 
 import DungeonCrawler.Config;
-import DungeonCrawler.Dungeon.DrawLocation;
-import DungeonCrawler.Dungeon.DungeonLocation;
-import DungeonCrawler.Entities.Player;
+import DungeonCrawler.dungeon.DrawLocation;
+import DungeonCrawler.dungeon.DungeonLocation;
 import DungeonCrawler.Frame;
-import DungeonCrawler.Recourses.CollisionChecker;
+import DungeonCrawler.entities.Monster;
+import DungeonCrawler.entities.Player;
+import DungeonCrawler.eventHandler.CollisionChecker;
+import DungeonCrawler.gameDisplay.GameWindow;
+import DungeonCrawler.gameDisplay.GamePanel;
 
 public class GameEngine {
 
@@ -16,6 +19,8 @@ public class GameEngine {
     private static Thread gameThread;
 
     public static Player player;
+    public static Monster monster;
+    public static boolean monsterInRange;
     public static int currentLocationNum;
     public static DungeonLocation dungeonLocation;
     public static DrawLocation drawLocation;
@@ -25,12 +30,13 @@ public class GameEngine {
         gamePanel = new GamePanel();
         collisionChecker = new CollisionChecker();
         player = new Player(gamePanel);
+        monster = new Monster();
         dungeonLocation = new DungeonLocation(player);
         currentLocationNum = dungeonLocation.getCurrentWorldLocation();
 
         drawLocation = new DrawLocation();
 
-        gameFrame = new GameFrame();
+        gameFrame = new GameWindow();
         gameFrame.addGameFrame(gamePanel);
 
         gameThread = new Thread(GameEngine::loop);
@@ -45,17 +51,13 @@ public class GameEngine {
 
         while (gameThread != null){
             GameLogic.updateGame();
-
             gamePanel.repaint();
 
             try {
                 double remaining = nextDraw - System.nanoTime();
+                if(remaining > 0)
                 Thread.sleep((long) (remaining / 1000000));
                 nextDraw += Config.INTERVAL;
-
-                if (remaining < 0){
-                    remaining = 0;
-                }
             }
             catch (InterruptedException e){
                 throw new RuntimeException(e);
