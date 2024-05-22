@@ -71,5 +71,8 @@ public class KeyAction implements KeyListener {
         if (key == KeyEvent.VK_SPACE) {
             attack = false;
         }
+        if (key == KeyEvent.VK_U){
+            usePotion = false;
+        }
     }
 }

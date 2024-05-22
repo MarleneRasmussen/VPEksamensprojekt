@@ -12,6 +12,7 @@ public class PlayerState {
     private static int coins;
     private static int keys;
     private static int potions;
+    private int potionCounter = 0;
 
     public static void addItemToInventory(ItemObject item) {
         if(item.getItemProperties() == ItemProperties.COIN) {
@@ -35,7 +36,7 @@ public class PlayerState {
     public void useFromInventory() {
         if(potions > 0 && GameScene.player.getHealth() < Config.DEFAULT_PLAYER_HEALTH && KeyAction.usePotion) {
                 GameScene.player.setHealth(Config.DEFAULT_PLAYER_HEALTH);
-                potions--;
+            potions--;
         }
     }
 
